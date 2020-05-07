@@ -23,3 +23,7 @@
 hs_err_pid*
 /javaNetworkClient/nbproject/private/
 /javaNetworkServer/nbproject/private/
+/javaNetworkClient/build/
+/javaNetworkClient/dist/
+/javaNetworkServer/dist/
+/javaNetworkServer/build/
