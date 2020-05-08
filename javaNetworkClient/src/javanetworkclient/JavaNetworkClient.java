@@ -1,10 +1,12 @@
 package javanetworkclient;
 
 import javanetworkclient.mainWindow.MainWindow;
+import javanetworkclient.authStuff.*;
 
 public class JavaNetworkClient {
 
     public static void main(String[] args) {
-         MainWindow m = new MainWindow();
+         //LoginWindow lw = new LoginWindow();
+         MainWindow mw = new MainWindow();
     }
 }
