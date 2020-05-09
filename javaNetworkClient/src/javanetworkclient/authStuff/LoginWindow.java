@@ -16,6 +16,7 @@ public class LoginWindow extends javax.swing.JFrame {
      */
     public LoginWindow() {
         initComponents();
+        setVisible(true);
     }
 
     /**
@@ -33,7 +34,7 @@ public class LoginWindow extends javax.swing.JFrame {
         password = new javax.swing.JPasswordField();
         username = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cloud backup  - log in");
         setResizable(false);
 

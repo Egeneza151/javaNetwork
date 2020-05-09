@@ -4,7 +4,7 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 
-import javanetworkclient.options.OptionsWindow;
+import javanetworkclient.options.*;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -69,7 +69,6 @@ public class MainWindow extends javax.swing.JFrame {
         menu6.setName("");
         menuBar3.add(menu6);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Cloud backup - ");
         setMaximumSize(new java.awt.Dimension(400, 200));
         setMinimumSize(new java.awt.Dimension(400, 200));
@@ -162,8 +161,8 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        OptionsWindow op = new OptionsWindow();
-        //op.setLocation();
+        
+        OptionsWindow op = new OptionsWindow(this,true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
