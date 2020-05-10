@@ -14,6 +14,10 @@ public class LoginWindow extends javax.swing.JFrame {
         setVisible(true);
     }
 
+    public void setInfoText(String data) {
+        infoText.setText(data);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -23,6 +27,7 @@ public class LoginWindow extends javax.swing.JFrame {
         button1 = new java.awt.Button();
         password = new javax.swing.JPasswordField();
         username = new javax.swing.JTextField();
+        infoText = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cloud backup  - log in");
@@ -57,7 +62,9 @@ public class LoginWindow extends javax.swing.JFrame {
                         .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(infoText)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -72,9 +79,15 @@ public class LoginWindow extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(20, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(infoText)
+                        .addContainerGap())))
         );
 
         pack();
@@ -82,16 +95,25 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
         if (username.getText().length() < 1 || password.getPassword().length < 1) {
+            setInfoText("Username or password cannot be empty!");
             showMessageDialog(null, "Username or password cannot be empty!");
             return;
         }
         try {
-            BackupClient.cfg.setProperty("username", username.getText());
+            String user = username.getText();
             String pass = String.valueOf(password.getPassword());
+
             pass = HashingStuff.hashSth(pass);
-            BackupClient.cfg.setProperty("password", pass);
-            
-                        
+
+            if (BackupClient.srv.login(user, pass)) {
+                BackupClient.cfg.setProperty("username", user);
+                BackupClient.cfg.setProperty("password", pass);
+                dispose();
+            } else {
+                setInfoText("Username or password is invalid!");
+                showMessageDialog(null, "Username or password is invalid!");
+            }
+
         } catch (IOException ex) {
             System.out.println(ex.getStackTrace());
         } catch (NoSuchAlgorithmException ex) {
@@ -136,9 +158,10 @@ public class LoginWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button button1;
+    private javax.swing.JLabel infoText;
     private java.awt.Label label1;
     private java.awt.Label label2;
-    private javax.swing.JPasswordField password;
-    private javax.swing.JTextField username;
+    public javax.swing.JPasswordField password;
+    public javax.swing.JTextField username;
     // End of variables declaration//GEN-END:variables
 }

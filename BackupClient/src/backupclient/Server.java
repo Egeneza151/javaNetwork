@@ -1,29 +1,37 @@
 package backupclient;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.net.Socket;
-
 
 public class Server {
 
     private final Socket socket;
-    public Server() throws IOException{
-        this.socket = new Socket("localhost",2137);
+
+    public Server() throws IOException {
+        this.socket = new Socket("localhost", 2137);
     }
-    OutputStream  os = null;
+    OutputStream os = null;
     InputStream is = null;
-    public boolean login(String username,String password) throws IOException{
-        os = new OutputStream(socket.getOutputStream());
-        is = new InputStream(socket.getInputStream());
-        os.print("clientCredentials").append("\r\n");
-        os.print(username+";"+password).append("\r\n");
-        
-        
-        
-        
-        
-        return false;
+
+    public boolean login(String username, String password) throws IOException {
+        os = socket.getOutputStream();
+        is = socket.getInputStream();
+        PrintWriter osw = new PrintWriter(os, true);
+        osw.print("clientCredentials\r\n");
+        osw.print(username + ";" + password + "\r\n");
+        BufferedReader in = new BufferedReader(new InputStreamReader(is));
+
+        String response = in.readLine();
+
+        return "OK".equals(response);
+    }
+
+    public void sendFile(String pathToFile) {
+
     }
 }
