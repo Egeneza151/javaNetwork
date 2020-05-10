@@ -198,7 +198,7 @@ public class OptionsWindow extends javax.swing.JDialog {
         ret = fc.showOpenDialog(jButton2);
         if (ret == JFileChooser.APPROVE_OPTION) {
             pathBox.setText(fc.getSelectedFile().getAbsolutePath());
-                    
+            
         }
 
 
