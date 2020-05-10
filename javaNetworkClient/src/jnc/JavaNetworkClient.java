@@ -1,9 +1,7 @@
-package javanetworkclient;
+package jnc;
 
 import java.awt.AWTException;
 import java.io.IOException;
-import javanetworkclient.mainWindow.MainWindow;
-import javanetworkclient.configHandler.ConfigHandler;
 
 
 public class JavaNetworkClient {

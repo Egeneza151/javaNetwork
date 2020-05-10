@@ -1,4 +1,4 @@
-package javanetworkclient.configHandler;
+package jns;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.io.InputStream;
 
 public class ConfigHandler {
 
-    public Properties props;
+    private Properties props;
     String path = "./config.properties";
     
     public ConfigHandler() throws FileNotFoundException, IOException {
@@ -25,10 +25,8 @@ public class ConfigHandler {
 
         }else{
             Writer os = new FileWriter(path);
-            props.setProperty("username","");
-            props.setProperty("password","");
-            props.setProperty("sync_path","");
-            props.setProperty("sync_time","");
+            props.setProperty("socket","");
+            props.setProperty("backups_path","");
             props.store(os,"Config file");
             os.close();
         }
@@ -37,5 +35,8 @@ public class ConfigHandler {
         Writer os = new FileWriter(path);
         props.store(os,"Config file");
         os.close();
+    }
+    public String getProperty(String prop){
+        return props.getProperty(prop);
     }
 }

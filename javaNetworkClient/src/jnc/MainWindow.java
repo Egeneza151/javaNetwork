@@ -1,10 +1,9 @@
-package javanetworkclient.mainWindow;
+package jnc;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 
-import javanetworkclient.options.*;
 
 public class MainWindow extends javax.swing.JFrame {
 
@@ -70,7 +69,6 @@ public class MainWindow extends javax.swing.JFrame {
         menuBar3.add(menu6);
 
         setTitle("Cloud backup - ");
-        setMaximumSize(new java.awt.Dimension(400, 200));
         setMinimumSize(new java.awt.Dimension(400, 200));
         setResizable(false);
 
