@@ -4,7 +4,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Rectangle;
 
-
 public class MainWindow extends javax.swing.JFrame {
 
     /**
@@ -159,8 +158,8 @@ public class MainWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
-        OptionsWindow op = new OptionsWindow(this,true);
+
+        OptionsWindow op = new OptionsWindow(this, true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**

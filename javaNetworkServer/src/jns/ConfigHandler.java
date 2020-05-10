@@ -13,30 +13,32 @@ public class ConfigHandler {
 
     private Properties props;
     String path = "./config.properties";
-    
+
     public ConfigHandler() throws FileNotFoundException, IOException {
         props = new Properties();
-       
+
         File tmp = new File(path);
         if (tmp.exists()) {
             InputStream is = new FileInputStream(path);
             props.load(is);
             is.close();
 
-        }else{
+        } else {
             Writer os = new FileWriter(path);
-            props.setProperty("socket","");
-            props.setProperty("backups_path","");
-            props.store(os,"Config file");
+            props.setProperty("socket", "");
+            props.setProperty("backups_path", "");
+            props.store(os, "Config file");
             os.close();
         }
     }
-    public void saveProps() throws IOException{
+
+    public void saveProps() throws IOException {
         Writer os = new FileWriter(path);
-        props.store(os,"Config file");
+        props.store(os, "Config file");
         os.close();
     }
-    public String getProperty(String prop){
+
+    public String getProperty(String prop) {
         return props.getProperty(prop);
     }
 }

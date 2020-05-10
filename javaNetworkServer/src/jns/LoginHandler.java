@@ -15,6 +15,7 @@ public class LoginHandler {
         src = new SQLiteDataSource();
         src.setUrl("jdbc:sqlite:./database.sqlite");
     }
+
     public boolean checkUser(String username, String password) throws SQLException {
         password = StringEscapeUtils.escapeJava(password);
         ResultSet query = src.getConnection().createStatement().executeQuery("SELECT * FROM users WHERE username = '" + username + "' AND password ='" + password + "'");

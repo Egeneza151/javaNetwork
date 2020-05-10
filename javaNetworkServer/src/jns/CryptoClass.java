@@ -10,5 +10,5 @@ package jns;
  * @author Aveneid
  */
 public class CryptoClass {
-    
+
 }

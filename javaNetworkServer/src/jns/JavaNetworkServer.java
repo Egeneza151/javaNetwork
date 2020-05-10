@@ -16,11 +16,10 @@ public class JavaNetworkServer {
         server = new ServerSocket(port);
         ConfigHandler cf = new ConfigHandler();
         port = Integer.parseInt(cf.getProperty("port"));
-           while(true){
-               
-               
-               
-           }       
+        boolean running = true;
+        while (running) {
+
+        }
         System.out.println("Shutting down...");
         server.close();
     }
