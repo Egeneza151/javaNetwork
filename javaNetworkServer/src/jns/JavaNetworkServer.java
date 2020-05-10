@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.lang.ClassNotFoundException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import jns.*;
 
 public class JavaNetworkServer {
 
@@ -18,6 +19,16 @@ public class JavaNetworkServer {
         port = Integer.parseInt(cf.getProperty("port"));
         boolean running = true;
         while (running) {
+            Socket s = null;
+            try{
+                s = server.accept();
+                Thread t = new ClientHandler(s);
+                t.start();
+                
+            } catch(Exception e){
+                running = false;
+                e.printStackTrace();
+            }
 
         }
         System.out.println("Shutting down...");
