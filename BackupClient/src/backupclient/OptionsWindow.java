@@ -1,17 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package backupclient;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
 
-/**
- *
- * @author Aveneid
- */
+
 public class OptionsWindow extends javax.swing.JDialog {
 
     /**
@@ -34,20 +30,21 @@ public class OptionsWindow extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         pathBox = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
-        jRadioButton6 = new javax.swing.JRadioButton();
-        jRadioButton7 = new javax.swing.JRadioButton();
-        jRadioButton8 = new javax.swing.JRadioButton();
-        jSpinner1 = new javax.swing.JSpinner();
+        time15 = new javax.swing.JRadioButton();
+        time30 = new javax.swing.JRadioButton();
+        time60 = new javax.swing.JRadioButton();
+        time90 = new javax.swing.JRadioButton();
+        time120 = new javax.swing.JRadioButton();
+        time180 = new javax.swing.JRadioButton();
+        time360 = new javax.swing.JRadioButton();
+        timeCustom = new javax.swing.JRadioButton();
+        timeCustomVal = new javax.swing.JSpinner();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -73,21 +70,37 @@ public class OptionsWindow extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Sync every: "));
 
-        jRadioButton1.setText("15 minutes");
+        buttonGroup1.add(time15);
+        time15.setText("15 minutes");
 
-        jRadioButton2.setText("30 minutes");
+        buttonGroup1.add(time30);
+        time30.setText("30 minutes");
 
-        jRadioButton3.setSelected(true);
-        jRadioButton3.setText("1 hour");
+        buttonGroup1.add(time60);
+        time60.setSelected(true);
+        time60.setText("1 hour");
 
-        jRadioButton4.setText("1.5 hours");
+        buttonGroup1.add(time90);
+        time90.setText("1.5 hours");
 
-        jRadioButton5.setText("2 hours");
-        jRadioButton5.setToolTipText("");
+        buttonGroup1.add(time120);
+        time120.setText("2 hours");
+        time120.setToolTipText("");
 
-        jRadioButton6.setText("3 hours");
+        buttonGroup1.add(time180);
+        time180.setText("3 hours");
 
-        jRadioButton7.setText("6 hours");
+        buttonGroup1.add(time360);
+        time360.setText("6 hours");
+
+        buttonGroup1.add(timeCustom);
+        timeCustom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                timeCustomActionPerformed(evt);
+            }
+        });
+
+        timeCustomVal.setEnabled(false);
 
         jLabel2.setText("minutes");
 
@@ -99,26 +112,26 @@ public class OptionsWindow extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton1)
+                        .addComponent(time15)
                         .addGap(18, 18, 18)
-                        .addComponent(jRadioButton4))
+                        .addComponent(time90))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton3))
+                            .addComponent(time30)
+                            .addComponent(time60))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton6)
-                            .addComponent(jRadioButton5))))
+                            .addComponent(time180)
+                            .addComponent(time120))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jRadioButton8)
+                        .addComponent(timeCustom)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(timeCustomVal, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel2))
-                    .addComponent(jRadioButton7))
+                    .addComponent(time360))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -126,22 +139,22 @@ public class OptionsWindow extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton7))
+                    .addComponent(time15)
+                    .addComponent(time90)
+                    .addComponent(time360))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jRadioButton5)
-                            .addComponent(jRadioButton8))
+                            .addComponent(time30)
+                            .addComponent(time120)
+                            .addComponent(timeCustom))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton6)))
+                            .addComponent(time60)
+                            .addComponent(time180)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(timeCustomVal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel2)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -184,11 +197,32 @@ public class OptionsWindow extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void saveSettings() {
+    private void saveSettings() throws IOException {
+        if(pathBox.getText().length()<0){
+            showMessageDialog(null, "Invalid path");
+            return;
+        }
+            
+        BackupClient.cfg.setProperty("sync_path",pathBox.getText());
         
+        String time = "";
+        if(time15.isSelected()) time = "15";
+        if(time30.isSelected()) time = "30";
+        if(time60.isSelected()) time = "60";
+        if(time90.isSelected()) time = "90";
+        if(time120.isSelected()) time = "120";
+        if(time180.isSelected()) time = "180";
+        if(time360.isSelected()) time = "36";
+        if(timeCustom.isSelected()) time = String.valueOf(timeCustomVal.getValue());
+          
+        BackupClient.cfg.setProperty("sync_time",time );
     }
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        saveSettings();
+        try {
+            saveSettings();
+        } catch (IOException ex) {
+            Logger.getLogger(OptionsWindow.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -203,6 +237,13 @@ public class OptionsWindow extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void timeCustomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timeCustomActionPerformed
+       if(timeCustom.isSelected())
+           timeCustomVal.setEnabled(true);
+       else
+           timeCustomVal.setEnabled(false);
+    }//GEN-LAST:event_timeCustomActionPerformed
 
     /**
      * @param args the command line arguments
@@ -248,20 +289,21 @@ public class OptionsWindow extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
-    private javax.swing.JRadioButton jRadioButton7;
-    private javax.swing.JRadioButton jRadioButton8;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField pathBox;
+    private javax.swing.JRadioButton time120;
+    private javax.swing.JRadioButton time15;
+    private javax.swing.JRadioButton time180;
+    private javax.swing.JRadioButton time30;
+    private javax.swing.JRadioButton time360;
+    private javax.swing.JRadioButton time60;
+    private javax.swing.JRadioButton time90;
+    private javax.swing.JRadioButton timeCustom;
+    private javax.swing.JSpinner timeCustomVal;
     // End of variables declaration//GEN-END:variables
 }
